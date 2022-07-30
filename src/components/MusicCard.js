@@ -3,7 +3,6 @@ import Icon from "@mdi/react";
 import { mdiPlay } from "@mdi/js";
 
 function MusicCard(props) {
-  let img = props.music.image;
   return (
     <div>
       <div className="music-card-warpper">
@@ -14,7 +13,7 @@ function MusicCard(props) {
               src="https://picsum.photos/180/174"
               alt="music"
             /> */}
-            <img className="music-img" src={img} alt="music" />
+            <img className="music-img" src={props.music.image} alt="music" />
             <div className="logo-div">
               {" "}
               <img src={"/assets/small-logo.png"} width="25" alt="logo" />{" "}

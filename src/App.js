@@ -5,6 +5,7 @@ import NewRelease from "./views/NewRelease";
 import Focus from "./views/Focus";
 import Mood from "./views/Mood";
 import RockHome from "./views/RockHome";
+import Search from "./views/Search";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/focus" exact component={Focus} />
         <Route path="/mood" exact component={Mood} />
         <Route path="/rock-home" exact component={RockHome} />
+        <Route path="/search" exact component={Search} />
       </>
     </BrowserRouter>
   );

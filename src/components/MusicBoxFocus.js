@@ -66,7 +66,7 @@ function MusicBox() {
                   artist: "Dummy Artist",
                   title: "Dummy Title",
                   description: "Dummy Description",
-                  image: "https://picsum.photos/180/174",
+                  image: "https://picsum.photos/175/174",
                 }}
                 className="cards__item"
                 key={(Math.random() + 1).toString(36).substring(7)}

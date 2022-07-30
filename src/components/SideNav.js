@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom";
 import "../styles/SideNav.css";
 import Icon from "@mdi/react";
 import { mdiHomeVariant } from "@mdi/js";
@@ -7,6 +8,7 @@ import { mdiPlusBox } from "@mdi/js";
 import { mdiHeartBoxOutline } from "@mdi/js";
 
 function SideNav() {
+  let history = useHistory();
   return (
     <div>
       <div id="side-nav">
@@ -18,7 +20,7 @@ function SideNav() {
           </div>
           <div id="side-nav-body">
             <div id="side-nav-body-content">
-              <div className="side-nav-body-content-item home">
+              <div onClick={() => history.push("/")} className="side-nav-body-content-item home">
                 <div className="side-nav-body-content-item-icon">
                   <Icon
                     path={mdiHomeVariant}
@@ -32,7 +34,7 @@ function SideNav() {
                   <p>Home</p>
                 </div>
               </div>
-              <div className="side-nav-body-content-item search-bar">
+              <div onClick={() => history.push("/search")} className="side-nav-body-content-item search-bar">
                 <div className="side-nav-body-content-item-icon">
                   <Icon
                     path={mdiMagnify}

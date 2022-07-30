@@ -3,6 +3,7 @@ import "../styles/TopNav.css";
 import Icon from "@mdi/react";
 import { mdiChevronRight } from "@mdi/js";
 import { mdiChevronLeft } from "@mdi/js";
+import { mdiMagnify } from "@mdi/js";
 
 function TopNav() {
   let history = useHistory();
@@ -11,7 +12,10 @@ function TopNav() {
       <div id="top-nav">
         <div id="top-nav-content">
           <div className="button-wrapper-top-nav">
-            <button onClick={() => history.push("/")} className="button-top-nav">
+            <button
+              onClick={() => history.push("/")}
+              className="button-top-nav"
+            >
               <Icon
                 className="icon-top-nav"
                 path={mdiChevronLeft}
@@ -31,6 +35,21 @@ function TopNav() {
                 rotate={-180}
               />
             </button>
+            <div className="search-bar-top-nav">
+              <div className="search-bar-top-nav-content">
+                <span className="search-bar-top-nav-span">
+                  <Icon
+                    path={mdiMagnify}
+                    size={1.3}
+                    horizontal
+                    vertical
+                    rotate={-180}
+                    color="black"
+                  />
+                </span>
+                <input type="text" placeholder="Artists, songs or podcasts" />
+              </div>
+            </div>
           </div>
           <div className="right-btns">
             <button id="signup" className="font">

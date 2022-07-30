@@ -1,9 +1,13 @@
 import { useHistory } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/MusicBox.css";
 import MusicCard from "./MusicCard";
 
 function MusicBox() {
+  useEffect(() => {
+    document.getElementsByClassName("search-bar-top-nav")[0].style.opacity =
+      "0";
+  }, []);
   let history = useHistory();
   const [music, setMusic] = useState([
     {
