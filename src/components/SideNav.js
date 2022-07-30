@@ -13,12 +13,7 @@ function SideNav() {
         <div id="side-nav-content">
           <div id="side-nav-header">
             <div id="side-nav-header-logo">
-              <img
-                src={require(process.env.PUBLIC_URL +
-                  "../assets/spotify-logo.png")}
-                width="100"
-                alt="logo"
-              />
+              <img src={"/assets/spotify-logo.png"} width="100" alt="logo" />
             </div>
           </div>
           <div id="side-nav-body">

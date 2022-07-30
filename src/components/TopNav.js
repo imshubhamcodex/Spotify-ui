@@ -31,8 +31,12 @@ function TopNav() {
             </button>
           </div>
           <div className="right-btns">
-            <button id="signup" className="font">Sign up</button>
-            <button id="login" className="font">Log in</button>
+            <button id="signup" className="font">
+              Sign up
+            </button>
+            <button id="login" className="font">
+              Log in
+            </button>
           </div>
         </div>
       </div>

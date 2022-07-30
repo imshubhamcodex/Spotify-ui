@@ -38,7 +38,7 @@ function PlayerNav() {
                 <Icon
                   className="control-icon"
                   path={mdiShuffle}
-                  size={1}
+                  size={0.8}
                   horizontal
                   vertical
                   rotate={-180}
@@ -46,7 +46,7 @@ function PlayerNav() {
                 <Icon
                   className="control-icon"
                   path={mdiChevronDoubleLeft}
-                  size={1.5}
+                  size={1.2}
                   horizontal
                   vertical
                   rotate={-180}
@@ -55,7 +55,7 @@ function PlayerNav() {
                 <Icon
                   className="control-icon"
                   path={mdiPlayCircleOutline}
-                  size={1.5}
+                  size={1.2}
                   horizontal
                   vertical
                   rotate={-180}
@@ -63,7 +63,7 @@ function PlayerNav() {
                 <Icon
                   className="control-icon"
                   path={mdiChevronDoubleRight}
-                  size={1.5}
+                  size={1.2}
                   horizontal
                   vertical
                   rotate={-180}
@@ -71,7 +71,7 @@ function PlayerNav() {
                 <Icon
                   className="control-icon"
                   path={mdiRepeatVariant}
-                  size={1}
+                  size={0.8}
                   horizontal
                   vertical
                   rotate={-180}
@@ -98,15 +98,13 @@ function PlayerNav() {
                 <Icon
                   className="btn-icon-right"
                   path={mdiFormatListGroupPlus}
-                  size={1}
-                  horizontal
-                  vertical
+                  size={0.8}
                   rotate={0}
                 />
                 <Icon
                   className="btn-icon-right"
                   path={mdiVolumeHigh}
-                  size={1}
+                  size={0.8}
                   horizontal
                   vertical
                   rotate={-180}

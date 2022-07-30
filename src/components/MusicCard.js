@@ -2,26 +2,27 @@ import "../styles/MusicCard.css";
 import Icon from "@mdi/react";
 import { mdiPlay } from "@mdi/js";
 
-function MusicCard() {
+function MusicCard(props) {
+  let img = props.music.image;
   return (
     <div>
       <div className="music-card-warpper">
         <div className="music-card">
           <div className="music-card-image">
-            <img
+            {/* <img
               className="music-img"
               src="https://picsum.photos/180/174"
               alt="music"
-            />
-            <div className="logo-div"> <img
-                src={require(process.env.PUBLIC_URL +
-                  "../assets/small-logo.png")}
-                width="25"
-                alt="logo"
-              /> </div>
+            /> */}
+            <img className="music-img" src={img} alt="music" />
+            <div className="logo-div">
+              {" "}
+              <img src={"/assets/small-logo.png"} width="25" alt="logo" />{" "}
+            </div>
             <div className="button-wrapper">
               <button className="button">
-                <Icon className="btn-icon"
+                <Icon
+                  className="btn-icon"
                   path={mdiPlay}
                   size={1.2}
                   horizontal
@@ -33,13 +34,13 @@ function MusicCard() {
           </div>
           <div className="music-card-info">
             <div className="music-card-title">
-              <h3>Bollywood Butter</h3>
+              <h3>{props.music.title}</h3>
             </div>
             <div className="music-card-artist">
-              <h4>Unknown</h4>
+              <h4>{props.music.artist}</h4>
             </div>
             <div className="music-card-description">
-              <h4>The finest quality of music</h4>
+              <h4>{props.music.description}</h4>
             </div>
           </div>
         </div>
