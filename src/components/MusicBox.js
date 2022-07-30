@@ -1,8 +1,10 @@
+import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import "../styles/MusicBox.css";
 import MusicCard from "./MusicCard";
 
 function MusicBox() {
+  let history = useHistory();
   const [music, setMusic] = useState([
     {
       artist: "Tulsi Kumar Darshan",
@@ -158,7 +160,7 @@ function MusicBox() {
           <h1 className="font">New Releases</h1>
           <div className="see-all-div">
             <p className="see-all">
-              <a>SEE ALL</a>
+              <a onClick={() => history.push("/new-release")}>SEE ALL</a>
             </p>
           </div>
           <div className="cards">
@@ -173,7 +175,7 @@ function MusicBox() {
               <p>Music to help you concentrate. </p>
             </p>
             <p className="see-all sec-see-all">
-              <a>SEE ALL</a>
+              <a onClick={() => history.push("/focus")}>SEE ALL</a>
             </p>
           </div>
           <div className="cards">
@@ -188,7 +190,7 @@ function MusicBox() {
               <p>Playlist to match your mood. </p>
             </p>
             <p className="see-all sec-see-all">
-              <a>SEE ALL</a>
+              <a onClick={() => history.push("/mood")}>SEE ALL</a>
             </p>
           </div>
           <div className="cards">
@@ -200,7 +202,7 @@ function MusicBox() {
           <h1 className="font">Rock you home</h1>
           <div className="see-all-div">
             <p className="see-all">
-              <a>SEE ALL</a>
+              <a onClick={() => history.push("/rock-home")}>SEE ALL</a>
             </p>
           </div>
           <div className="cards">

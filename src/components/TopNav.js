@@ -1,15 +1,17 @@
+import { useHistory } from "react-router-dom";
 import "../styles/TopNav.css";
 import Icon from "@mdi/react";
 import { mdiChevronRight } from "@mdi/js";
 import { mdiChevronLeft } from "@mdi/js";
 
 function TopNav() {
+  let history = useHistory();
   return (
     <div>
       <div id="top-nav">
         <div id="top-nav-content">
           <div className="button-wrapper-top-nav">
-            <button className="button-top-nav">
+            <button onClick={() => history.push("/")} className="button-top-nav">
               <Icon
                 className="icon-top-nav"
                 path={mdiChevronLeft}
