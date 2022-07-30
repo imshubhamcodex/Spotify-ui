@@ -1,13 +1,14 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/MusicBox.css";
 import "../styles/MusicCard.css";
 import "../styles/Search.css";
 
-function MusicBox() {
+function MusicBox(props) {
   useEffect(() => {
     document.getElementsByClassName("search-bar-top-nav")[0].style.opacity =
       "1";
-  }, []);
+    console.log(props);
+  }, [props]);
   const [image, setImage] = useState([
     "/assets/s1.png",
     "/assets/s2.png",
@@ -47,9 +48,9 @@ function MusicBox() {
             </p>
           </div>
           <div className="cards">
-            {image.map((ele, index) => (
-              <div>
-                <div className="music-card-warpper">
+            {image.map((ele) => (
+              <div key={(Math.random() + 1).toString(36).substring(7)}>
+                <div className="music-card-warpper music-card-warpper-search">
                   <div className="music-card">
                     <div className="music-card-image">
                       <img className="music-img" src={ele} alt="music" />

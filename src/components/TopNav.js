@@ -5,7 +5,7 @@ import { mdiChevronRight } from "@mdi/js";
 import { mdiChevronLeft } from "@mdi/js";
 import { mdiMagnify } from "@mdi/js";
 
-function TopNav() {
+function TopNav({ onClickCallback }) {
   let history = useHistory();
   return (
     <div>
@@ -47,7 +47,11 @@ function TopNav() {
                     color="black"
                   />
                 </span>
-                <input type="text" placeholder="Artists, songs or podcasts" />
+                <input
+                  onChange={(e) => onClickCallback(e)}
+                  type="text"
+                  placeholder="Artists, songs or podcasts"
+                />
               </div>
             </div>
           </div>
