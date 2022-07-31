@@ -1,4 +1,5 @@
 import "../styles/PlayerNav.css";
+import React, { useState, useEffect } from "react";
 import Icon from "@mdi/react";
 import { mdiHeart } from "@mdi/js";
 import { mdiShuffle } from "@mdi/js";
@@ -8,9 +9,50 @@ import { mdiPlayCircleOutline } from "@mdi/js";
 import { mdiRepeatVariant } from "@mdi/js";
 import { mdiFormatListGroupPlus } from "@mdi/js";
 import { mdiVolumeHigh } from "@mdi/js";
-import { mdiCheckboxBlankCircle } from "@mdi/js";
+import { mdiPauseCircleOutline } from "@mdi/js";
 
-function PlayerNav() {
+function PlayerNav(props) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSong, setCurrentSong] = useState(null);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [volume, setVolume] = useState(0);
+
+  useEffect(() => {
+    document.getElementById("track-range").value = props.width / 100;
+  }, [props.width]);
+
+  useEffect(() => {
+    document.getElementById("volume-range").value = props.vol;
+    setVolume(props.vol);
+  }, []);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    props.playSound();
+    setIsPlaying(true);
+  };
+  const handlePause = () => {
+    setIsPlaying(false);
+    props.pauseSound();
+    setIsPlaying(false);
+  };
+  const handleNext = () => {
+    setIsPlaying(true);
+    props.nextSound();
+  };
+  const handlePrevious = () => {
+    setIsPlaying(true);
+    props.prevSound();
+  };
+  const handleVolume = () => {
+    let vol = document.getElementById("volume-range").value;
+    setVolume(vol);
+    props.setvolume(vol);
+  };
+  const handleSeek = () =>{
+    let seek = document.getElementById("track-range").value;
+    props.seekSound(seek);
+  }
   return (
     <div>
       <div id="player-nav">
@@ -50,16 +92,30 @@ function PlayerNav() {
                   horizontal
                   vertical
                   rotate={-180}
+                  onClick={handlePrevious}
                 />
 
-                <Icon
-                  className="control-icon"
-                  path={mdiPlayCircleOutline}
-                  size={1.2}
-                  horizontal
-                  vertical
-                  rotate={-180}
-                />
+                {!isPlaying ? (
+                  <Icon
+                    className="control-icon"
+                    path={mdiPlayCircleOutline}
+                    size={1.2}
+                    horizontal
+                    vertical
+                    rotate={-180}
+                    onClick={handlePlay}
+                  />
+                ) : (
+                  <Icon
+                    className="control-icon"
+                    path={mdiPauseCircleOutline}
+                    size={1.2}
+                    horizontal
+                    vertical
+                    rotate={-180}
+                    onClick={handlePause}
+                  />
+                )}
                 <Icon
                   className="control-icon"
                   path={mdiChevronDoubleRight}
@@ -67,6 +123,7 @@ function PlayerNav() {
                   horizontal
                   vertical
                   rotate={-180}
+                  onClick={handleNext}
                 />
                 <Icon
                   className="control-icon"
@@ -79,17 +136,14 @@ function PlayerNav() {
               </div>
               <div className="progress-bar">
                 <div className="progress-bar-fill">
-                  <div className="progress-bar-fill-inner"></div>
-                  <div>
-                    <Icon
-                      className="seek-icon"
-                      path={mdiCheckboxBlankCircle}
-                      size={0.7}
-                      horizontal
-                      vertical
-                      rotate={-180}
-                    />
-                  </div>
+                  <input
+                    id="track-range"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    onChange={handleSeek}
+                  />
                 </div>
               </div>
             </div>
@@ -111,19 +165,14 @@ function PlayerNav() {
                 />
               </div>
               <div className="volume-bar">
-                <div className="volume-bar-fill">
-                  <div className="volume-bar-fill-inner"></div>
-                  <div>
-                    <Icon
-                      className="vol-icon"
-                      path={mdiCheckboxBlankCircle}
-                      size={0.7}
-                      horizontal
-                      vertical
-                      rotate={-180}
-                    />
-                  </div>
-                </div>
+                <input
+                  id="volume-range"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  onChange={handleVolume}
+                />
               </div>
             </div>
           </div>

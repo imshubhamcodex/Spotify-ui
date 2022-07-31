@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import SideNav from "../components/SideNav";
 import TopNav from "../components/TopNav";
-import PlayerNav from "../components/PlayerNav";
 import MusicBoxRelease from "../components/MusicBoxSearch";
 
 function Home() {
@@ -15,7 +14,6 @@ function Home() {
       <MusicBoxRelease query={query} />
       <SideNav />
       <TopNav onClickCallback={handleSaveNote} />
-      <PlayerNav />
     </div>
   );
 }

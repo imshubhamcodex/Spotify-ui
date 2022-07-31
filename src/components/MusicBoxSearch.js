@@ -7,35 +7,52 @@ function MusicBox(props) {
   useEffect(() => {
     document.getElementsByClassName("search-bar-top-nav")[0].style.opacity =
       "1";
-    console.log(props);
+    let imageData = [
+      { img: "/assets/s1.png", text: "Podcasts" },
+      { img: "/assets/s2.png", text: "Made For You" },
+      { img: "/assets/s3.png", text: "Charts" },
+      { img: "/assets/s4.png", text: "New Releases" },
+      { img: "/assets/s5.png", text: "Discover" },
+      { img: "/assets/s6.png", text: "Bollywood" },
+      { img: "/assets/s7.png", text: "Punjabi" },
+      { img: "/assets/s8.png", text: "Tamil" },
+      { img: "/assets/s9.png", text: "Telgu" },
+      { img: "/assets/s10.png", text: "Indie" },
+      { img: "/assets/s11.png", text: "Gaming" },
+      { img: "/assets/s12.png", text: "Equal" },
+      { img: "/assets/s13.png", text: "Pop" },
+      { img: "/assets/s14.png", text: "Radar" },
+      { img: "/assets/s15.png", text: "Fresh Mind" },
+      { img: "/assets/s16.png", text: "Marathi" },
+      { img: "/assets/s17.png", text: "Wellness" },
+      { img: "/assets/s18.png", text: "Devotional" },
+      { img: "/assets/s19.png", text: "Indian Classical" },
+      { img: "/assets/s20.png", text: "Romance" },
+      { img: "/assets/s21.png", text: "Happy Hoilidays" },
+      { img: "/assets/s22.png", text: "Decades" },
+      { img: "/assets/s23.png", text: "K-pop" },
+      { img: "/assets/s24.png", text: "Diseny" },
+      { img: "/assets/s25.png", text: "Netflix" },
+    ];
+    if (props.query.length === 0) {
+      setImage(imageData);
+    } else {
+      setImage([]);
+      let arr = [];
+
+      imageData.forEach((element) => {
+        if (
+          element.text.toLowerCase().includes(props.query.toLowerCase()) &&
+          !arr.some((e) => e.text.toLowerCase() === element.text.toLowerCase())
+        ) {
+          let newImage = [...arr, element];
+          arr.push(element);
+          setImage(newImage);
+        }
+      });
+    }
   }, [props]);
-  const [image, setImage] = useState([
-    "/assets/s1.png",
-    "/assets/s2.png",
-    "/assets/s3.png",
-    "/assets/s4.png",
-    "/assets/s5.png",
-    "/assets/s6.png",
-    "/assets/s7.png",
-    "/assets/s8.png",
-    "/assets/s9.png",
-    "/assets/s10.png",
-    "/assets/s11.png",
-    "/assets/s12.png",
-    "/assets/s13.png",
-    "/assets/s14.png",
-    "/assets/s15.png",
-    "/assets/s16.png",
-    "/assets/s17.png",
-    "/assets/s18.png",
-    "/assets/s19.png",
-    "/assets/s20.png",
-    "/assets/s21.png",
-    "/assets/s22.png",
-    "/assets/s23.png",
-    "/assets/s24.png",
-    "/assets/s25.png",
-  ]);
+  const [image, setImage] = useState([]);
 
   return (
     <div>
@@ -53,7 +70,7 @@ function MusicBox(props) {
                 <div className="music-card-warpper music-card-warpper-search">
                   <div className="music-card">
                     <div className="music-card-image">
-                      <img className="music-img" src={ele} alt="music" />
+                      <img className="music-img" src={ele.img} alt="music" />
                     </div>
                   </div>
                 </div>
