@@ -157,6 +157,9 @@ function MusicBox() {
       id: 20,
     },
   ]);
+  const handleMusic = (ele, action) => {
+    history.push(`/music/${ele.id}/${action}`);
+  };
   return (
     <div>
       <div id="music-box">
@@ -169,7 +172,12 @@ function MusicBox() {
           </div>
           <div className="cards">
             {music.map((ele) => (
-              <MusicCard music={ele} className="cards__item" key={ele.id} />
+              <MusicCard
+                handleMusic={handleMusic}
+                music={ele}
+                className="cards__item"
+                key={ele.id}
+              />
             ))}
           </div>
           <br />

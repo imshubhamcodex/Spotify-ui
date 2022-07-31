@@ -42,7 +42,7 @@
 
 .music-card-warpper:hover {
   background-color: #282828;
-  cursor: pointer;
+  cursor: inherit;
 }
 
 .music-card-image {
@@ -55,6 +55,7 @@
   right: 10px;
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .music-card-warpper:hover .button-wrapper {
@@ -69,6 +70,7 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 
 .btn-icon {
@@ -79,4 +81,9 @@
   position: absolute;
   top: 6px;
   left: 2px;
+}
+
+.button-wrapper-play {
+  bottom: 10px !important;
+  opacity: 1 !important;
 }

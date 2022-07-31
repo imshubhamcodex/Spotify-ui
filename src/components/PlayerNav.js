@@ -13,13 +13,27 @@ import { mdiPauseCircleOutline } from "@mdi/js";
 
 function PlayerNav(props) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSong, setCurrentSong] = useState(null);
+  const [currentSong, setCurrentSong] = useState({
+    artist: "N/A",
+    title: "N/A",
+  });
+
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [volume, setVolume] = useState(0);
 
   useEffect(() => {
     document.getElementById("track-range").value = props.width / 100;
-  }, [props.width]);
+  }, [props.width, props.isPlaying]);
+
+  useEffect(() => {
+    if (props.currentSongIndex !== -1) {
+      let currSong = props.currenPlaying;
+      console.log(currSong);
+      setCurrentSong(currSong);
+      setCurrentSongIndex(props.currentSongIndex);
+      setIsPlaying(props.isPlaying);
+    }
+  }, [props.currenPlaying, props.currentSongIndex, props.isPlaying]);
 
   useEffect(() => {
     document.getElementById("volume-range").value = props.vol;
@@ -49,10 +63,10 @@ function PlayerNav(props) {
     setVolume(vol);
     props.setvolume(vol);
   };
-  const handleSeek = () =>{
+  const handleSeek = () => {
     let seek = document.getElementById("track-range").value;
     props.seekSound(seek);
-  }
+  };
   return (
     <div>
       <div id="player-nav">
@@ -60,9 +74,9 @@ function PlayerNav(props) {
           <div className="player-wrapper">
             <div className="player-wrapper-left">
               <div className="song-name">
-                <span>Love me like you do</span>
+                <span>{currentSong.title}</span>
                 <br />
-                <span>Artist name</span>
+                <span>{currentSong.artist}</span>
               </div>
               <div className="like-icon-player">
                 <Icon
@@ -72,6 +86,7 @@ function PlayerNav(props) {
                   horizontal
                   vertical
                   rotate={-180}
+                  color="green"
                 />
               </div>
             </div>
