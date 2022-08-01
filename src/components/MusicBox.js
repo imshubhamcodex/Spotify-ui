@@ -1,14 +1,60 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../styles/MusicBox.css";
 import MusicCard from "./MusicCard";
 
 function MusicBox() {
+  let location = useLocation();
   useEffect(() => {
     document.getElementsByClassName("search-bar-top-nav")[0].style.opacity =
       "0";
   }, []);
+  useEffect(() => {
+    let currURL = window.location.pathname;
+    let id = currURL.split("/")[2];
+    let action = currURL.split("/")[3];
+    if (currURL.includes("/play")) {
+      if (Number(id) - 1 === 0 && action === "play") {
+        setM0Play(true);
+        setM1Play(false);
+        setM2Play(false);
+        setM3Play(false);
+        setM4Play(false);
+      } else if (Number(id) - 1 === 1 && action === "play") {
+        setM0Play(false);
+        setM1Play(true);
+        setM2Play(false);
+        setM3Play(false);
+        setM4Play(false);
+      } else if (Number(id) - 1 === 2 && action === "play") {
+        setM0Play(false);
+        setM1Play(false);
+        setM2Play(true);
+        setM3Play(false);
+        setM4Play(false);
+      } else if (Number(id) - 1 === 3 && action === "play") {
+        setM0Play(false);
+        setM1Play(false);
+        setM2Play(false);
+        setM3Play(true);
+        setM4Play(false);
+      } else if (Number(id) - 1 === 4 && action === "play") {
+        setM0Play(false);
+        setM1Play(false);
+        setM2Play(false);
+        setM3Play(false);
+        setM4Play(true);
+      }
+    }
+  }, [location, window.location.pathname]);
   let history = useHistory();
+
+  const [m0Play, setM0Play] = useState(false);
+  const [m1Play, setM1Play] = useState(false);
+  const [m2Play, setM2Play] = useState(false);
+  const [m3Play, setM3Play] = useState(false);
+  const [m4Play, setM4Play] = useState(false);
+
   const [music, setMusic] = useState([
     {
       artist: "Tulsi Kumar Darshan",
@@ -158,6 +204,48 @@ function MusicBox() {
     },
   ]);
   const handleMusic = (ele, action) => {
+    if (Number(ele.id) - 1 === 0 && action === "stop") {
+      setM0Play(false);
+    } else if (Number(ele.id) - 1 === 1 && action === "stop") {
+      setM1Play(false);
+    } else if (Number(ele.id) - 1 === 2 && action === "stop") {
+      setM2Play(false);
+    } else if (Number(ele.id) - 1 === 3 && action === "stop") {
+      setM3Play(false);
+    } else if (Number(ele.id) - 1 === 4 && action === "stop") {
+      setM4Play(false);
+    }
+    if (Number(ele.id) - 1 === 0 && action === "play") {
+      setM0Play(true);
+      setM1Play(false);
+      setM2Play(false);
+      setM3Play(false);
+      setM4Play(false);
+    } else if (Number(ele.id) - 1 === 1 && action === "play") {
+      setM0Play(false);
+      setM1Play(true);
+      setM2Play(false);
+      setM3Play(false);
+      setM4Play(false);
+    } else if (Number(ele.id) - 1 === 2 && action === "play") {
+      setM0Play(false);
+      setM1Play(false);
+      setM2Play(true);
+      setM3Play(false);
+      setM4Play(false);
+    } else if (Number(ele.id) - 1 === 3 && action === "play") {
+      setM0Play(false);
+      setM1Play(false);
+      setM2Play(false);
+      setM3Play(true);
+      setM4Play(false);
+    } else if (Number(ele.id) - 1 === 4 && action === "play") {
+      setM0Play(false);
+      setM1Play(false);
+      setM2Play(false);
+      setM3Play(false);
+      setM4Play(true);
+    }
     history.push(`/music/${ele.id}/${action}`);
   };
   return (
@@ -171,14 +259,41 @@ function MusicBox() {
             </p>
           </div>
           <div className="cards">
-            {music.map((ele) => (
-              <MusicCard
-                handleMusic={handleMusic}
-                music={ele}
-                className="cards__item"
-                key={ele.id}
-              />
-            ))}
+            <MusicCard
+              handleMusic={handleMusic}
+              music={music[0]}
+              playing={m0Play}
+              className="cards__item"
+              key={music[0].id}
+            />
+            <MusicCard
+              handleMusic={handleMusic}
+              music={music[1]}
+              playing={m1Play}
+              className="cards__item"
+              key={music[1].id}
+            />
+            <MusicCard
+              handleMusic={handleMusic}
+              music={music[2]}
+              playing={m2Play}
+              className="cards__item"
+              key={music[2].id}
+            />
+            <MusicCard
+              handleMusic={handleMusic}
+              music={music[3]}
+              playing={m3Play}
+              className="cards__item"
+              key={music[3].id}
+            />
+            <MusicCard
+              handleMusic={handleMusic}
+              music={music[4]}
+              playing={m4Play}
+              className="cards__item"
+              key={music[4].id}
+            />
           </div>
           <br />
           <h1 className="font">Focus</h1>

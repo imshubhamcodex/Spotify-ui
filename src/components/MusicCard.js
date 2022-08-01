@@ -5,34 +5,15 @@ import { mdiStopCircle } from "@mdi/js";
 import React, { useState } from "react";
 
 function MusicCard(props) {
-  const [playing, setPlaying] = useState(null);
-  const [random, setRandom] = useState(null);
-  const handlePlay = () => {
+  const handlePlay = (e) => {
     let action = "play";
     let url = window.location.pathname.split("/");
     if (url.length >= 4 && url[3] === "play" && url[2] == props.music.id) {
-      action = "pause";
-      setPlaying(false);
-      let btn = document.getElementsByClassName("button-wrapper");
-      Array.from(btn).forEach((item) => {
-        item.classList.remove("button-wrapper-play");
-      });
-    } else {
-      let btn = document.getElementsByClassName("button-wrapper");
-      Array.from(btn).forEach((item, index) => {
-        if (index + 1 === Number(props.music.id)) {
-          item.classList.add("button-wrapper-play");
-          console.log("hi");
-        } else {
-          item.classList.remove("button-wrapper-play");
-        }
-      });
-      setPlaying(true);
+      action = "stop";
     }
     if (Object.keys(props).length > 2) {
       props.handleMusic(props.music, action);
     }
-    setRandom((Math.random() + 1).toString(36).substring(7));
   };
   return (
     <div>
@@ -49,12 +30,16 @@ function MusicCard(props) {
               {" "}
               <img src={"/assets/small-logo.png"} width="25" alt="logo" />{" "}
             </div>
-            <div className="button-wrapper">
-              <button className="button" onClick={handlePlay} key={random}>
-                {!playing ? (
+            <div
+              className={
+                props.playing ? "button-wrapper-play" : "button-wrapper"
+              }
+            >
+              <button className="button" onClick={(e) => handlePlay(e)}>
+                {props.playing ? (
                   <Icon
                     className="btn-icon"
-                    path={mdiPlay}
+                    path={mdiStopCircle}
                     size={1.2}
                     horizontal
                     vertical
@@ -63,7 +48,7 @@ function MusicCard(props) {
                 ) : (
                   <Icon
                     className="btn-icon"
-                    path={mdiStopCircle}
+                    path={mdiPlay}
                     size={1.2}
                     horizontal
                     vertical

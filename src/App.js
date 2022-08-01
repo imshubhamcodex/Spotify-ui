@@ -53,6 +53,9 @@ function App() {
   const [songs, setSongs] = useState([
     "/sounds/sound1.mp3",
     "/sounds/sound2.mp3",
+    "/sounds/sound3.mp3",
+    "/sounds/sound4.mp3",
+    "/sounds/sound5.mp3",
   ]);
   const [volume, setVolume] = useState(0.3);
   const [isMuted, setIsMuted] = useState(false);
@@ -67,8 +70,8 @@ function App() {
       autoplay: false,
       loop: false,
       volume: 0.2,
-      onend: function () {
-        console.log("Finished!");
+      onend: () => {
+        nextSound();
       },
     })
   );
@@ -89,7 +92,9 @@ function App() {
 
     setInterval(() => {
       let currURL = window.location.pathname;
-      if (prevURL != currURL && currURL !== "/") {
+      if (prevURL != currURL && currURL !== "/" && currURL !== "") {
+        document.getElementById("player-nav").style.opacity = "1";
+        document.getElementById("player-nav").style.zIndex = "99";
         prevURL = currURL;
         updateURL(currURL);
         console.log(currURL, prevURL);
@@ -102,7 +107,7 @@ function App() {
     if (action === "play") {
       playSongURL(url);
     }
-    if (action === "pause") {
+    if (action === "stop") {
       pauseSongURL(url);
     }
   };
@@ -120,8 +125,8 @@ function App() {
       autoplay: false,
       loop: false,
       volume: 0.5,
-      onend: function () {
-        console.log("Finished!");
+      onend: () => {
+        nextSound();
       },
     });
     setSound(music);
@@ -147,46 +152,34 @@ function App() {
     sound.pause();
     setIsPlaying(false);
   };
-  let stopSound = () => {
-    if (sound.playing()) sound.stop();
-  };
   let nextSound = () => {
-    if (currentSongIndex >= songs.length) return;
-    stopSound();
-    let currIndex = currentSongIndex + 1;
-    setCurrentSongIndex(currIndex);
+    let currURL = window.location.pathname;
+    let id = currURL.split("/")[2];
+    let action = currURL.split("/")[3];
 
-    let music = new Howl({
-      src: songs[currIndex],
-      autoplay: false,
-      loop: false,
-      volume: volume,
-      onend: function () {
-        console.log("Finished!");
-      },
-    });
-    setSound(music);
-    music.play();
-    setIsPlaying(true);
+    if (id === "5" && action === "play") {
+      let currURL = window.location.pathname;
+      let action = currURL.split("/")[3];
+      window.history.pushState(null, null, "/music/1" + "/" + action);
+    } else {
+      window.history.pushState(
+        null,
+        null,
+        "/music/" + (Number(id) + 1) + "/" + action
+      );
+    }
   };
   let prevSound = () => {
     if (currentSongIndex === 0) return;
-    stopSound();
-    let currIndex = currentSongIndex - 1;
-    setCurrentSongIndex(currIndex);
+    let currURL = window.location.pathname;
+    let id = currURL.split("/")[2];
+    let action = currURL.split("/")[3];
 
-    let music = new Howl({
-      src: songs[currIndex],
-      autoplay: false,
-      loop: false,
-      volume: volume,
-      onend: function () {
-        console.log("Finished!");
-      },
-    });
-    setSound(music);
-    music.play();
-    setIsPlaying(true);
+    window.history.pushState(
+      null,
+      null,
+      "/music/" + (Number(id) - 1) + "/" + action
+    );
   };
   let seekSound = (val) => {
     if (sound.playing()) {
@@ -207,6 +200,7 @@ function App() {
         </>
       </BrowserRouter>
       <PlayerNav
+        id="player-nav"
         playSound={playSound}
         pauseSound={pauseSound}
         nextSound={nextSound}
