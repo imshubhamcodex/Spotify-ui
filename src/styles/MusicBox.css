@@ -75,4 +75,10 @@ h1 {
     align-items: center;
     justify-content: center;
   }
+  .conc{
+    display: none;
+  }
+  .sec-see-all{
+    margin-right: 20px;
+  }
 }

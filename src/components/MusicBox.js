@@ -299,7 +299,7 @@ function MusicBox() {
           <h1 className="font">Focus</h1>
           <div className="see-all-div-second">
             <p className="see-all">
-              <p>Music to help you concentrate. </p>
+              <p className="conc">Music to help you concentrate. </p>
             </p>
             <p className="see-all sec-see-all">
               <a onClick={() => history.push("/focus")}>SEE ALL</a>
@@ -314,7 +314,7 @@ function MusicBox() {
           <h1 className="font">Mood</h1>
           <div className="see-all-div-second">
             <p className="see-all">
-              <p>Playlist to match your mood. </p>
+              <p className="conc">Playlist to match your mood. </p>
             </p>
             <p className="see-all sec-see-all">
               <a onClick={() => history.push("/mood")}>SEE ALL</a>
