@@ -64,11 +64,11 @@
   border: 0;
   padding-left: 50px;
 }
-.search-bar-top-nav-span{
+.search-bar-top-nav-span {
   position: absolute;
   z-index: 99;
-  left:10px;
-  top:6px;
+  left: 10px;
+  top: 6px;
 }
 .right-btns {
   position: absolute;
@@ -98,4 +98,27 @@
   font-size: 15px;
   font-weight: 700;
   margin-left: 10px;
+}
+
+@media (max-width: 500px) {
+  #top-nav {
+    width: 100vw !important;
+    height: 7vh !important;
+  }
+  #top-nav-content {
+    zoom: 0.7;
+  }
+  .button-top-nav:nth-child(2) {
+    margin-left: 35px;
+  }
+  #login {
+    margin-left: 25px;
+  }
+  .search-bar-top-nav {
+    zoom: 0.9;
+    left: 150px;
+  }
+  .search-bar-top-nav-content {
+    width: 200px;
+  }
 }

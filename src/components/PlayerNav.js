@@ -74,9 +74,17 @@ function PlayerNav(props) {
           <div className="player-wrapper">
             <div className="player-wrapper-left">
               <div className="song-name">
-                <span>{currentSong.title}</span>
+                <span>
+                  {currentSong.title.length > 14
+                    ? currentSong.title.substring(0, 12) + ".."
+                    : currentSong.title}
+                </span>
                 <br />
-                <span>{currentSong.artist}</span>
+                <span>
+                  {currentSong.artist.length > 14
+                    ? currentSong.artist.substring(0, 12) + ".."
+                    : currentSong.artist}
+                </span>
               </div>
               <div className="like-icon-player">
                 <Icon
@@ -93,7 +101,7 @@ function PlayerNav(props) {
             <div className="player-wrapper-middle">
               <div className="controls-btn">
                 <Icon
-                  className="control-icon"
+                  className="control-icon shuffle"
                   path={mdiShuffle}
                   size={0.8}
                   horizontal
@@ -141,7 +149,7 @@ function PlayerNav(props) {
                   onClick={handleNext}
                 />
                 <Icon
-                  className="control-icon"
+                  className="control-icon repeat"
                   path={mdiRepeatVariant}
                   size={0.8}
                   horizontal
@@ -165,13 +173,13 @@ function PlayerNav(props) {
             <div className="player-wrapper-right">
               <div className="volume-icon">
                 <Icon
-                  className="btn-icon-right"
+                  className="btn-icon-right bookmark"
                   path={mdiFormatListGroupPlus}
                   size={0.8}
                   rotate={0}
                 />
                 <Icon
-                  className="btn-icon-right"
+                  className="btn-icon-right vol-icon"
                   path={mdiVolumeHigh}
                   size={0.8}
                   horizontal

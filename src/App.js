@@ -160,7 +160,7 @@ function App() {
     if (id === "5" && action === "play") {
       let currURL = window.location.pathname;
       let action = currURL.split("/")[3];
-      window.history.pushState(null, null, "/music/1" + "/" + action);
+      window.history.pushState(null, null, "/music/1/" + action);
     } else {
       window.history.pushState(
         null,

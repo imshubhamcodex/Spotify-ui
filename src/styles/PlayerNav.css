@@ -116,3 +116,30 @@
   accent-color: green;
   cursor: pointer;
 }
+
+@media (max-width: 500px) {
+  .shuffle {
+    display: none;
+  }
+  .repeat {
+    display: none;
+  }
+  .bookmark {
+    display: none;
+  }
+  .volume-bar {
+    width: 0px;
+    opacity: 0;
+  }
+  .player-wrapper-right {
+    zoom: 0.6;
+  }
+  .vol-icon {
+    display: none;
+  }
+  .like-icon-player {
+    width: 10px;
+    margin-left: -10px;
+    margin-top: -10px;
+  }
+}

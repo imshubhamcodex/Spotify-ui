@@ -59,3 +59,20 @@ h1 {
   flex-wrap: wrap;
   /* justify-content: space-between */
 }
+@media(max-width:500px){
+  #music-box {
+    width: 100vw !important;
+    text-align: center;
+  }
+  #music-box-content{
+    padding: 0px !important;
+    text-align: center;
+    display: block;
+    margin: auto auto;
+    padding: auto auto;
+  }
+  .cards {
+    align-items: center;
+    justify-content: center;
+  }
+}
